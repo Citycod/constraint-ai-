@@ -1,0 +1,62 @@
+version: '3.8'
+
+services:
+  # Low-end phone simulation (512MB RAM, 0.5 CPU)
+  app-lowend:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: edge-ai-lowend
+    ports:
+      - "3001:3000"
+    cpus: '0.5'
+    mem_limit: 512m
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    restart: unless-stopped
+    labels:
+      - "com.edge-ai.profile=lowend"
+
+  # Edge device simulation (1GB RAM, 1 CPU)
+  app-edge:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: edge-ai-edge
+    ports:
+      - "3002:3000"
+    cpus: '1.0'
+    mem_limit: 1g
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    restart: unless-stopped
+    labels:
+      - "com.edge-ai.profile=edge"
+
+  # Raspberry Pi simulation (2GB RAM, 1.5 CPU)
+  app-rpi:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: edge-ai-rpi
+    ports:
+      - "3003:3000"
+    cpus: '1.5'
+    mem_limit: 2g
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    restart: unless-stopped
+    labels:
+      - "com.edge-ai.profile=rpi"
+
+volumes:
+  node_modules:
+    driver: local
+
+networks:
+  default:
+    name: edge-ai-network
+    driver: bridge
