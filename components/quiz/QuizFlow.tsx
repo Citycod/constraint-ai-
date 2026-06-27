@@ -121,53 +121,47 @@ export function QuizFlow({ quizId, category }: QuizFlowProps) {
     return (
       <div className="text-center space-y-6 animate-in zoom-in duration-500 p-8">
         <div>
-          <h2 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 mb-4 drop-shadow-sm">
+          <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">
             Quiz Complete!
           </h2>
-          <p className="text-purple-200 text-lg mb-8">
+          <p className="text-slate-600 dark:text-slate-400 mb-8">
             You answered {questionCount} questions
           </p>
 
           {/* Score Display */}
           <div className="flex justify-center mb-8">
-            <div className="relative w-40 h-40">
-              <svg className="w-full h-full transform -rotate-90 drop-shadow-2xl">
-                <defs>
-                  <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#60a5fa" />
-                    <stop offset="100%" stopColor="#c084fc" />
-                  </linearGradient>
-                </defs>
+            <div className="relative w-32 h-32">
+              <svg className="w-full h-full transform -rotate-90">
                 <circle
                   cx="64"
                   cy="64"
                   r="56"
                   fill="none"
-                  stroke="rgba(255,255,255,0.1)"
+                  stroke="currentColor"
                   strokeWidth="6"
-                  className="drop-shadow-lg"
+                  className="text-slate-200 dark:text-slate-800"
                 />
                 <circle
                   cx="64"
                   cy="64"
                   r="56"
                   fill="none"
-                  stroke="url(#gradient)"
+                  stroke="currentColor"
                   strokeWidth="6"
                   strokeDasharray={`${(score / 100) * 351.86} 351.86`}
-                  className="transition-all duration-500"
+                  className="text-blue-600 transition-all duration-500"
                 />
               </svg>
               <div className="absolute inset-0 flex items-center justify-center">
                 <div>
-                  <div className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-purple-300">{score}%</div>
+                  <div className="text-4xl font-bold text-slate-900 dark:text-white">{score}%</div>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Score Message */}
-          <p className="text-2xl font-bold text-white mb-8">
+          <p className="text-xl font-semibold text-slate-900 dark:text-white mb-8">
             {score >= 90
               ? 'Excellent Performance!'
               : score >= 70
@@ -194,7 +188,7 @@ export function QuizFlow({ quizId, category }: QuizFlowProps) {
   if (!currentQuestion) {
     return (
       <div className="text-center space-y-4 py-12">
-        <p className="text-purple-200 animate-pulse text-xl font-medium">Preparing your adaptive quiz...</p>
+        <p className="text-slate-500 dark:text-slate-400 text-lg">Loading quiz...</p>
       </div>
     )
   }
@@ -204,13 +198,13 @@ export function QuizFlow({ quizId, category }: QuizFlowProps) {
       {/* Progress Bar */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex-1">
-          <div className="flex justify-between text-sm font-semibold text-purple-200 mb-2">
+          <div className="flex justify-between text-sm font-medium text-slate-600 dark:text-slate-400 mb-2">
             <span>Question {questionCount + 1}</span>
             <span>Score: {score}%</span>
           </div>
-          <div className="w-full bg-black/20 rounded-full h-3 backdrop-blur-sm border border-white/5">
+          <div className="w-full bg-slate-200 dark:bg-slate-800 rounded-full h-2">
             <div
-              className="bg-gradient-to-r from-blue-500 to-purple-500 h-full rounded-full transition-all duration-700 shadow-[0_0_10px_rgba(168,85,247,0.5)]"
+              className="bg-blue-600 h-full rounded-full transition-all duration-500"
               style={{ width: `${(questionCount + 1) * 10}%` }}
             ></div>
           </div>
@@ -220,16 +214,16 @@ export function QuizFlow({ quizId, category }: QuizFlowProps) {
       {/* Feedback Box (shown after answer) */}
       {showFeedback && lastFeedback && (
         <div
-          className={`p-6 rounded-xl border animate-in slide-in-from-top-4 duration-300 ${
+          className={`p-4 rounded-lg border-l-4 ${
             lastFeedback.correct
-              ? 'bg-green-500/20 border-green-500/50 backdrop-blur-md'
-              : 'bg-red-500/20 border-red-500/50 backdrop-blur-md'
+              ? 'bg-green-50 dark:bg-green-900/20 border-green-500'
+              : 'bg-red-50 dark:bg-red-900/20 border-red-500'
           }`}
         >
-          <p className={`text-lg font-bold mb-2 ${lastFeedback.correct ? 'text-green-300' : 'text-red-300'}`}>
-            {lastFeedback.correct ? 'Correct! 🎉' : 'Incorrect 💡'}
+          <p className={`font-semibold mb-2 ${lastFeedback.correct ? 'text-green-800 dark:text-green-300' : 'text-red-800 dark:text-red-300'}`}>
+            {lastFeedback.correct ? 'Correct!' : 'Incorrect'}
           </p>
-          <p className="text-gray-200 leading-relaxed text-base">
+          <p className={`text-sm ${lastFeedback.correct ? 'text-green-700 dark:text-green-400' : 'text-red-700 dark:text-red-400'}`}>
             {lastFeedback.explanation}
           </p>
         </div>
@@ -237,7 +231,7 @@ export function QuizFlow({ quizId, category }: QuizFlowProps) {
 
       {/* Question */}
       {!showFeedback && (
-        <div className="bg-white/5 rounded-2xl p-2 md:p-6 animate-in fade-in duration-500">
+        <div className="p-2 md:p-0 animate-in fade-in duration-500">
           <QuestionRenderer
             question={currentQuestion.question}
             options={currentQuestion.options}

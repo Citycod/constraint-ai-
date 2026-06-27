@@ -12,9 +12,9 @@ interface QuestionRendererProps {
 }
 
 const DIFFICULTY_COLOR = {
-  easy: 'bg-green-500/20 text-green-300 border border-green-500/30',
-  medium: 'bg-amber-500/20 text-amber-300 border border-amber-500/30',
-  hard: 'bg-red-500/20 text-red-300 border border-red-500/30',
+  easy: 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300 border border-green-200 dark:border-green-800',
+  medium: 'bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300 border border-amber-200 dark:border-amber-800',
+  hard: 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300 border border-red-200 dark:border-red-800',
 }
 
 export function QuestionRenderer({
@@ -43,8 +43,8 @@ export function QuestionRenderer({
       </div>
 
       {/* Question */}
-      <div className="p-6 rounded-xl bg-white/5 border border-white/10 shadow-inner">
-        <p className="text-xl font-bold text-white leading-relaxed">
+      <div className="bg-slate-50 dark:bg-slate-900/50 p-6 rounded-lg border border-slate-200 dark:border-slate-800">
+        <p className="text-lg font-semibold text-slate-900 dark:text-white leading-relaxed">
           {question}
         </p>
       </div>
@@ -56,25 +56,25 @@ export function QuestionRenderer({
             key={index}
             onClick={() => !loading && setSelectedOption(option)}
             disabled={loading}
-            className={`w-full text-left p-5 rounded-xl border-2 transition-all duration-300 ${
+            className={`w-full text-left p-4 rounded-lg border-2 transition-all ${
               selectedOption === option
-                ? 'border-purple-400 bg-purple-500/20 shadow-[0_0_15px_rgba(168,85,247,0.3)] transform scale-[1.02]'
-                : 'border-white/10 bg-white/5 hover:border-white/30 hover:bg-white/10'
+                ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
+                : 'border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600 bg-white dark:bg-slate-900'
             } ${loading ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
           >
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3">
               <div
-                className={`w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-colors ${
+                className={`w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${
                   selectedOption === option
-                    ? 'bg-purple-500 border-purple-500'
-                    : 'border-white/30'
+                    ? 'bg-blue-500 border-blue-500'
+                    : 'border-slate-300 dark:border-slate-600'
                 }`}
               >
                 {selectedOption === option && (
                   <div className="w-2 h-2 rounded-full bg-white"></div>
                 )}
               </div>
-              <span className="text-lg font-medium text-gray-100">
+              <span className="text-base font-medium text-slate-900 dark:text-white">
                 {option}
               </span>
             </div>
@@ -86,7 +86,7 @@ export function QuestionRenderer({
       <Button
         onClick={handleSubmit}
         disabled={selectedOption === null || loading}
-        className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white border-0 shadow-lg hover:shadow-[0_0_20px_rgba(168,85,247,0.4)] transition-all duration-300 text-lg py-6 mt-4"
+        className="w-full mt-4"
         size="lg"
       >
         {loading ? 'Loading next question...' : 'Submit Answer'}
