@@ -187,6 +187,7 @@ export function QuizFlow({ quizId, category }: QuizFlowProps) {
             </Button>
           </div>
         </div>
+      </div>
     )
   }
 
