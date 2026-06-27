@@ -1,7 +1,6 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
-import { PWAInitializer } from '@/components/shared/PWAInitializer'
 import { OfflineIndicator } from '@/components/shared/OfflineIndicator'
 import './globals.css'
 
@@ -71,7 +70,6 @@ export default function RootLayout({
         <link rel="manifest" href="/manifest.json" />
       </head>
       <body className="font-sans antialiased">
-        <PWAInitializer />
         <OfflineIndicator />
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
