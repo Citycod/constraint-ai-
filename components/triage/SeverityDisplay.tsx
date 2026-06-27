@@ -5,6 +5,7 @@ interface SeverityDisplayProps {
   recommendation: string
   reason: string
   evaluationTime: number
+  symptoms: string[]
 }
 
 const SEVERITY_CONFIG = {
@@ -36,6 +37,7 @@ export function SeverityDisplay({
   recommendation,
   reason,
   evaluationTime,
+  symptoms,
 }: SeverityDisplayProps) {
   const config = SEVERITY_CONFIG[severity]
 
@@ -58,7 +60,10 @@ export function SeverityDisplay({
             <summary className={`cursor-pointer font-semibold ${config.textColor}`}>Details</summary>
             <div className="mt-2 pl-4 border-l-2 opacity-75">
               <p className="mb-1">
-                <strong>Reason:</strong> {reason}
+                <strong>Symptoms Analyzed:</strong> {symptoms.join(', ')}
+              </p>
+              <p className="mb-1">
+                <strong>Rule Triggered:</strong> {reason}
               </p>
               <p>
                 <strong>Evaluation Time:</strong> {evaluationTime.toFixed(2)}ms

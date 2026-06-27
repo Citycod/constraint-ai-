@@ -68,6 +68,9 @@ export const healthcareTriage: Ruleset = {
         { field: 'symptoms', operator: 'contains', value: 'loss_consciousness' },
         { field: 'symptoms', operator: 'contains', value: 'severe_bleeding' },
         { field: 'symptoms', operator: 'contains', value: 'difficulty_speaking' },
+        { field: 'symptoms', operator: 'contains', value: 'bloody_stool' },
+        { field: 'symptoms', operator: 'contains', value: 'sudden_numbness_weakness' },
+        { field: 'symptoms', operator: 'contains', value: 'swelling_face_lips' },
       ],
     },
     // URGENT PATH
@@ -88,6 +91,10 @@ export const healthcareTriage: Ruleset = {
           { field: 'symptoms', operator: 'contains', value: 'severe_pain' },
           { field: 'symptoms', operator: 'contains', value: 'persistent_vomiting' },
           { field: 'symptoms', operator: 'contains', value: 'confusion' },
+          { field: 'symptoms', operator: 'contains', value: 'abdominal_cramping' },
+          { field: 'symptoms', operator: 'contains', value: 'severe_headache' },
+          { field: 'symptoms', operator: 'contains', value: 'blurred_vision' },
+          { field: 'symptoms', operator: 'contains', value: 'muscle_weakness' },
           { field: 'age', operator: 'less_than', value: 5 },
           { field: 'age', operator: 'greater_than', value: 65 },
         ],
@@ -133,6 +140,12 @@ export const healthcareTriage: Ruleset = {
             { field: 'symptoms', operator: 'contains', value: 'runny_nose' },
             { field: 'symptoms', operator: 'contains', value: 'sneezing' },
             { field: 'symptoms', operator: 'contains', value: 'minor_ache' },
+            { field: 'symptoms', operator: 'contains', value: 'nausea' },
+            { field: 'symptoms', operator: 'contains', value: 'diarrhea' },
+            { field: 'symptoms', operator: 'contains', value: 'dizziness' },
+            { field: 'symptoms', operator: 'contains', value: 'new_rash' },
+            { field: 'symptoms', operator: 'contains', value: 'severe_itching' },
+            { field: 'symptoms', operator: 'contains', value: 'joint_pain' },
           ],
         },
         createResult(
@@ -212,6 +225,9 @@ export function computeSeverityScore(symptoms: string[]): number {
     'loss_consciousness',
     'severe_bleeding',
     'difficulty_speaking',
+    'bloody_stool',
+    'sudden_numbness_weakness',
+    'swelling_face_lips',
   ])
 
   const seriousSymptoms = new Set([
@@ -219,6 +235,10 @@ export function computeSeverityScore(symptoms: string[]): number {
     'severe_pain',
     'persistent_vomiting',
     'confusion',
+    'abdominal_cramping',
+    'severe_headache',
+    'blurred_vision',
+    'muscle_weakness',
   ])
 
   const commonSymptoms = new Set([
@@ -229,6 +249,12 @@ export function computeSeverityScore(symptoms: string[]): number {
     'fever',
     'cough',
     'sore_throat',
+    'nausea',
+    'diarrhea',
+    'dizziness',
+    'new_rash',
+    'severe_itching',
+    'joint_pain',
   ])
 
   let score = 0

@@ -10,22 +10,46 @@ interface SymptomSelectorProps {
 }
 
 export const SYMPTOMS = [
+  // General & Respiratory
   { id: 'fever', label: 'Fever', category: 'General' },
   { id: 'high_fever', label: 'High Fever (103+°F)', category: 'General' },
+  { id: 'minor_ache', label: 'Minor Ache', category: 'General' },
   { id: 'mild_cough', label: 'Mild Cough', category: 'Respiratory' },
   { id: 'cough', label: 'Severe Cough', category: 'Respiratory' },
   { id: 'sore_throat', label: 'Sore Throat', category: 'Respiratory' },
   { id: 'runny_nose', label: 'Runny Nose', category: 'Respiratory' },
   { id: 'sneezing', label: 'Sneezing', category: 'Respiratory' },
+  
+  // Gastrointestinal
+  { id: 'nausea', label: 'Nausea', category: 'Gastrointestinal' },
+  { id: 'diarrhea', label: 'Diarrhea', category: 'Gastrointestinal' },
+  { id: 'abdominal_cramping', label: 'Abdominal Cramping', category: 'Gastrointestinal' },
+  { id: 'bloody_stool', label: 'Bloody Stool', category: 'Gastrointestinal (Critical)' },
+  { id: 'persistent_vomiting', label: 'Persistent Vomiting', category: 'Gastrointestinal' },
+  
+  // Neurological/Head
+  { id: 'dizziness', label: 'Dizziness', category: 'Neurological' },
+  { id: 'severe_headache', label: 'Severe Headache', category: 'Neurological' },
+  { id: 'blurred_vision', label: 'Blurred Vision', category: 'Neurological' },
+  { id: 'sudden_numbness_weakness', label: 'Sudden Numbness/Weakness', category: 'Neurological (Critical)' },
+  { id: 'confusion', label: 'Confusion', category: 'Neurological' },
+  { id: 'loss_consciousness', label: 'Loss of Consciousness', category: 'Neurological (Critical)' },
+  { id: 'difficulty_speaking', label: 'Difficulty Speaking', category: 'Neurological (Critical)' },
+  
+  // Skin/Allergy
+  { id: 'new_rash', label: 'New Rash', category: 'Skin/Allergy' },
+  { id: 'severe_itching', label: 'Severe Itching', category: 'Skin/Allergy' },
+  { id: 'swelling_face_lips', label: 'Swelling of Face/Lips', category: 'Skin/Allergy (Critical)' },
+  
+  // Musculoskeletal
+  { id: 'joint_pain', label: 'Joint Pain', category: 'Musculoskeletal' },
+  { id: 'muscle_weakness', label: 'Muscle Weakness', category: 'Musculoskeletal' },
+  { id: 'severe_pain', label: 'Severe Pain', category: 'Musculoskeletal' },
+
+  // Other Critical
   { id: 'chest_pain', label: 'Chest Pain', category: 'Critical' },
   { id: 'severe_shortness_breath', label: 'Severe Shortness of Breath', category: 'Critical' },
-  { id: 'loss_consciousness', label: 'Loss of Consciousness', category: 'Critical' },
   { id: 'severe_bleeding', label: 'Severe Bleeding', category: 'Critical' },
-  { id: 'difficulty_speaking', label: 'Difficulty Speaking', category: 'Critical' },
-  { id: 'severe_pain', label: 'Severe Pain', category: 'Serious' },
-  { id: 'persistent_vomiting', label: 'Persistent Vomiting', category: 'Serious' },
-  { id: 'confusion', label: 'Confusion', category: 'Serious' },
-  { id: 'minor_ache', label: 'Minor Ache', category: 'General' },
 ]
 
 export function SymptomSelector({

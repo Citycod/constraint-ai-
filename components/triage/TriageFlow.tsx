@@ -169,6 +169,7 @@ Reasoning: ${result.reason}
               recommendation={result.recommendation}
               reason={result.reason}
               evaluationTime={result.evaluationTime}
+              symptoms={symptoms.map(id => SYMPTOMS.find(s => s.id === id)?.label || id)}
             />
           </div>
         )}
