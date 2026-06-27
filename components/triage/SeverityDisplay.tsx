@@ -58,7 +58,7 @@ export function SeverityDisplay({
 
           <details className="text-xs">
             <summary className={`cursor-pointer font-semibold ${config.textColor}`}>Details</summary>
-            <div className="mt-2 pl-4 border-l-2 opacity-75">
+            <div className={`mt-2 pl-4 border-l-2 border-current opacity-75 ${config.textColor}`}>
               <p className="mb-1">
                 <strong>Symptoms Analyzed:</strong> {symptoms.join(', ')}
               </p>
