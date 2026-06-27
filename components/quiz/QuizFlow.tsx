@@ -119,49 +119,55 @@ export function QuizFlow({ quizId, category }: QuizFlowProps) {
 
   if (isFinished) {
     return (
-      <div className="text-center space-y-6">
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-12">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+      <div className="text-center space-y-6 animate-in zoom-in duration-500 p-8">
+        <div>
+          <h2 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 mb-4 drop-shadow-sm">
             Quiz Complete!
           </h2>
-          <p className="text-gray-600 dark:text-gray-400 mb-8">
+          <p className="text-purple-200 text-lg mb-8">
             You answered {questionCount} questions
           </p>
 
           {/* Score Display */}
           <div className="flex justify-center mb-8">
-            <div className="relative w-32 h-32">
-              <svg className="w-full h-full transform -rotate-90">
+            <div className="relative w-40 h-40">
+              <svg className="w-full h-full transform -rotate-90 drop-shadow-2xl">
+                <defs>
+                  <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#60a5fa" />
+                    <stop offset="100%" stopColor="#c084fc" />
+                  </linearGradient>
+                </defs>
                 <circle
                   cx="64"
                   cy="64"
                   r="56"
                   fill="none"
-                  stroke="#e5e7eb"
-                  strokeWidth="4"
-                  className="dark:stroke-gray-700"
+                  stroke="rgba(255,255,255,0.1)"
+                  strokeWidth="6"
+                  className="drop-shadow-lg"
                 />
                 <circle
                   cx="64"
                   cy="64"
                   r="56"
                   fill="none"
-                  stroke="#3b82f6"
-                  strokeWidth="4"
+                  stroke="url(#gradient)"
+                  strokeWidth="6"
                   strokeDasharray={`${(score / 100) * 351.86} 351.86`}
                   className="transition-all duration-500"
                 />
               </svg>
               <div className="absolute inset-0 flex items-center justify-center">
                 <div>
-                  <div className="text-4xl font-bold text-blue-600">{score}%</div>
+                  <div className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-purple-300">{score}%</div>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Score Message */}
-          <p className="text-lg font-semibold text-gray-900 dark:text-white mb-8">
+          <p className="text-2xl font-bold text-white mb-8">
             {score >= 90
               ? 'Excellent Performance!'
               : score >= 70
@@ -181,14 +187,13 @@ export function QuizFlow({ quizId, category }: QuizFlowProps) {
             </Button>
           </div>
         </div>
-      </div>
     )
   }
 
   if (!currentQuestion) {
     return (
-      <div className="text-center space-y-4">
-        <p className="text-gray-600 dark:text-gray-400">Loading quiz...</p>
+      <div className="text-center space-y-4 py-12">
+        <p className="text-purple-200 animate-pulse text-xl font-medium">Preparing your adaptive quiz...</p>
       </div>
     )
   }
@@ -198,13 +203,13 @@ export function QuizFlow({ quizId, category }: QuizFlowProps) {
       {/* Progress Bar */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex-1">
-          <div className="flex justify-between text-sm text-gray-600 dark:text-gray-400 mb-2">
+          <div className="flex justify-between text-sm font-semibold text-purple-200 mb-2">
             <span>Question {questionCount + 1}</span>
             <span>Score: {score}%</span>
           </div>
-          <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+          <div className="w-full bg-black/20 rounded-full h-3 backdrop-blur-sm border border-white/5">
             <div
-              className="bg-blue-600 h-2 rounded-full transition-all"
+              className="bg-gradient-to-r from-blue-500 to-purple-500 h-full rounded-full transition-all duration-700 shadow-[0_0_10px_rgba(168,85,247,0.5)]"
               style={{ width: `${(questionCount + 1) * 10}%` }}
             ></div>
           </div>
@@ -214,16 +219,16 @@ export function QuizFlow({ quizId, category }: QuizFlowProps) {
       {/* Feedback Box (shown after answer) */}
       {showFeedback && lastFeedback && (
         <div
-          className={`p-4 rounded-lg border-l-4 ${
+          className={`p-6 rounded-xl border animate-in slide-in-from-top-4 duration-300 ${
             lastFeedback.correct
-              ? 'bg-green-50 dark:bg-green-950 border-green-500'
-              : 'bg-red-50 dark:bg-red-950 border-red-500'
+              ? 'bg-green-500/20 border-green-500/50 backdrop-blur-md'
+              : 'bg-red-500/20 border-red-500/50 backdrop-blur-md'
           }`}
         >
-          <p className={`font-semibold mb-2 ${lastFeedback.correct ? 'text-green-800 dark:text-green-200' : 'text-red-800 dark:text-red-200'}`}>
-            {lastFeedback.correct ? 'Correct!' : 'Incorrect'}
+          <p className={`text-lg font-bold mb-2 ${lastFeedback.correct ? 'text-green-300' : 'text-red-300'}`}>
+            {lastFeedback.correct ? 'Correct! 🎉' : 'Incorrect 💡'}
           </p>
-          <p className={`text-sm ${lastFeedback.correct ? 'text-green-700 dark:text-green-300' : 'text-red-700 dark:text-red-300'}`}>
+          <p className="text-gray-200 leading-relaxed text-base">
             {lastFeedback.explanation}
           </p>
         </div>
@@ -231,7 +236,7 @@ export function QuizFlow({ quizId, category }: QuizFlowProps) {
 
       {/* Question */}
       {!showFeedback && (
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6">
+        <div className="bg-white/5 rounded-2xl p-2 md:p-6 animate-in fade-in duration-500">
           <QuestionRenderer
             question={currentQuestion.question}
             options={currentQuestion.options}

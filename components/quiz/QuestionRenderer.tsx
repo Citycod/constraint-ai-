@@ -12,9 +12,9 @@ interface QuestionRendererProps {
 }
 
 const DIFFICULTY_COLOR = {
-  easy: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
-  medium: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200',
-  hard: 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200',
+  easy: 'bg-green-500/20 text-green-300 border border-green-500/30',
+  medium: 'bg-amber-500/20 text-amber-300 border border-amber-500/30',
+  hard: 'bg-red-500/20 text-red-300 border border-red-500/30',
 }
 
 export function QuestionRenderer({
@@ -43,8 +43,8 @@ export function QuestionRenderer({
       </div>
 
       {/* Question */}
-      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 p-6 rounded-lg">
-        <p className="text-lg font-semibold text-gray-900 dark:text-white leading-relaxed">
+      <div className="p-6 rounded-xl bg-white/5 border border-white/10 shadow-inner">
+        <p className="text-xl font-bold text-white leading-relaxed">
           {question}
         </p>
       </div>
@@ -56,25 +56,25 @@ export function QuestionRenderer({
             key={index}
             onClick={() => !loading && setSelectedOption(option)}
             disabled={loading}
-            className={`w-full text-left p-4 rounded-lg border-2 transition-all ${
+            className={`w-full text-left p-5 rounded-xl border-2 transition-all duration-300 ${
               selectedOption === option
-                ? 'border-blue-500 bg-blue-50 dark:bg-blue-950'
-                : 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600'
+                ? 'border-purple-400 bg-purple-500/20 shadow-[0_0_15px_rgba(168,85,247,0.3)] transform scale-[1.02]'
+                : 'border-white/10 bg-white/5 hover:border-white/30 hover:bg-white/10'
             } ${loading ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
           >
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-4">
               <div
-                className={`w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${
+                className={`w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-colors ${
                   selectedOption === option
-                    ? 'bg-blue-500 border-blue-500'
-                    : 'border-gray-300 dark:border-gray-600'
+                    ? 'bg-purple-500 border-purple-500'
+                    : 'border-white/30'
                 }`}
               >
                 {selectedOption === option && (
                   <div className="w-2 h-2 rounded-full bg-white"></div>
                 )}
               </div>
-              <span className="text-base font-medium text-gray-900 dark:text-white">
+              <span className="text-lg font-medium text-gray-100">
                 {option}
               </span>
             </div>
@@ -86,7 +86,7 @@ export function QuestionRenderer({
       <Button
         onClick={handleSubmit}
         disabled={selectedOption === null || loading}
-        className="w-full"
+        className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white border-0 shadow-lg hover:shadow-[0_0_20px_rgba(168,85,247,0.4)] transition-all duration-300 text-lg py-6 mt-4"
         size="lg"
       >
         {loading ? 'Loading next question...' : 'Submit Answer'}

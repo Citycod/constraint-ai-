@@ -21,24 +21,24 @@ export default async function EducationQuizPage({
   const { quizId } = await params
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-pink-100 dark:from-gray-900 dark:to-gray-800 py-8 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-black text-white py-8 px-4">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="mb-8">
           <a
             href="/education"
-            className="text-purple-600 dark:text-purple-400 hover:underline text-sm font-medium mb-4 inline-block"
+            className="text-purple-300 hover:text-white transition-colors text-sm font-medium mb-4 inline-block"
           >
             ← Back to Categories
           </a>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+          <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
             Quiz
           </h1>
         </div>
 
         {/* Main Content */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6">
-          <Suspense fallback={<div>Loading quiz...</div>}>
+        <div className="bg-white/10 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl p-4 md:p-8 animate-in fade-in slide-in-from-bottom-8 duration-500">
+          <Suspense fallback={<div className="text-center py-10 text-purple-200">Loading quiz...</div>}>
             <QuizContent quizId={quizId} />
           </Suspense>
         </div>
